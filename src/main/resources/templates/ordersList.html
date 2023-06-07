@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Orders List</title>
+</head>
+<body>
+
+    <table border="1px">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>User id</th>
+            <th>Date time</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="order: ${orders}">
+            <td th:text="${order.getId()}"></td>
+            <td th:text="${order.getUserId()}"></td>
+            <td th:text="${order.getDateTime()}"></td>
+
+        </tr>
+
+        </tbody>
+    </table>
+
+</body>
+</html>

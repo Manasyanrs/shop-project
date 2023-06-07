@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Category</title>
+</head>
+<body>
+<form method="post" action="/admin/addCategory">
+    <table>
+        <tr>
+            <td>Category name:</td>
+            <td>
+                <input type="text" name="categoryName" required>
+            </td>
+        </tr>
+    </table>
+    <button>Add category</button>
+    </table>
+</form>
+<div style="margin-top: 50px">
+    <table border="1px">
+        <tr>
+            <th>Category id</th>
+            <th>Category name</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="category: ${categories}">
+            <td th:text="${category.getId()}"></td>
+            <td th:text="${category.getCategoryName()}"></td>
+            <td>
+                <form method="post" th:action="@{/admin/deleteCategory(id=${category.getId()})}">
+                    <button>Delete</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

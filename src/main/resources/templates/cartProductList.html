@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order</title>
+</head>
+<body>
+<h1>ORDER PAGE</h1>
+
+<table border="1px">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Img</th>
+        <th>Category name</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="product: ${productList}">
+        <td th:text="${product.getTitle()}"></td>
+        <td th:text="${product.getPrice()}"></td>
+        <td th:text="${product.getDescription()}"></td>
+        <td>
+            <img th:src="@{/productImg(image=${product.getImgPath()})}" width="100px"/>
+        </td>
+        <td th:text="${product.getCategory().getCategoryName()}"></td>
+        <td>
+            <form method="get" th:action="@{'/cart/deleteProduct/'+ ${product.getId()}}">
+                <button th:value="${product.id}">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div th:if="${totalCost > 0}" style="display: flex; align-items: center">
+    <div>
+        <h3>Total sum <span style="color: red" th:text="${totalCost} + ' $'"></span></h3>
+    </div>
+    <div style="margin-left: 100px">
+        <form method="get" action="/order">
+            <button>Buy</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

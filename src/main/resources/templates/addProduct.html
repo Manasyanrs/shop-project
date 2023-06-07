@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+</head>
+<body>
+<form method="get" action="/indexAdmin">
+    <button>Back to home</button>
+</form>
+
+
+<form method="post" action="/admin/addProduct" enctype="multipart/form-data">
+        <table>
+            <tr>
+                <td>Title: </td>
+                <td>
+                    <input type="text" name="title" required>
+                </td>
+            </tr>
+            <tr>
+                <td>Price: </td>
+                <td>
+                    <input type="text" name="price" required>
+                </td>
+            </tr>
+            <tr>
+                <td>Description: </td>
+                <td>
+                    <input type="text" name="description" required>
+                </td>
+            </tr>
+            <tr>
+                <td>Image: </td>
+                <td>
+                    <input type="file" name="uploadImg" accept="image/*" required>
+                </td>
+            </tr>
+            <tr>
+                <td>Category: </td>
+
+                <td>
+                    <select name="category">
+                        <option th:each="category: ${categories}" th:text="${category.getCategoryName()}" th:value="${category.getId()}"></option>
+                    </select>
+                </td>
+            </tr>
+
+        </table>
+        <button>Add Product</button>
+    </table>
+</form>
+</body>
+</html>
